@@ -49,6 +49,7 @@ sudo nano /etc/sysctl.conf
 
 
 add to bottom:
+
 	vm.swappiness=10
 
 Then make it so the swap gets mounted when the server reboots. Edit the fstab file
@@ -101,16 +102,19 @@ sudo nano /etc/pam.d/sshd
 
 Comment out the following two lines (adding a # to the beginning of each line):
 
-session optional pam_motd.so motd=/run/motd.dynamic
-​session optional pam_motd.so noupdate
-
+```ssh
+#session optional pam_motd.so motd=/run/motd.dynamic
+#session optional pam_motd.so noupdate
+```
 
 Now open the sshd_config file:
 ```ssh
 sudo nano /etc/ssh/sshd_config
 ```
 Comment out the following line (adding a # to the beginning):
-Banner /etc/issue.net
+```ssh
+#Banner /etc/issue.net
+```
 Save and close that file.
 
 Finally, restart the ssh server with the command:
